@@ -18,6 +18,6 @@ Rails.application.routes.draw do
   root "main#index"
 
   # GET /about (goes to about controller, index action)
-  get "about", to: "about#index"
+  get "about-us", to: "about#index", as: :about
 
 end
