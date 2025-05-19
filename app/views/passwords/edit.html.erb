@@ -1,16 +1,12 @@
-<h2>Sign Up Form</h2>
-<%= form_with model: @user, url: sign_up_path, data: { turbo: false } do |form| %>
+<h2>Edit Password Form</h2>
+<%= form_with model: Current.user, url: edit_password_path, data: { turbo: false } do |form| %>
   <% if form.object.errors.any? %>
     <% form.object.errors.full_messages.each do |message| %>
       <div class="alert alert-danger">
-          <div><%= message %></div>
+        <div><%= message %></div>
       </div>
     <% end %>
   <% end %>
-  <div class="mb-3">
-    <%= form.label :email %>
-    <%= form.text_field :email, class: "form-control", placeholder: 'steve@apple.com', required: true %>
-  </div>
   <div class="mb-3">
     <%= form.label :password %>
     <%= form.password_field :password, class: "form-control", placeholder: 'password', required: true %>
@@ -20,6 +16,6 @@
     <%= form.password_field :password_confirmation, class: "form-control", placeholder: 'confirm password', required: true %>
   </div>
   <div class="mb-3">
-    <%= form.submit class: "btn btn-primary" %>
+    <%= form.submit "Update Password", class: "btn btn-primary" %>
   </div>
 <% end %>
