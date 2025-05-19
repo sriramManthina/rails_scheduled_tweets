@@ -4,11 +4,4 @@
 <div class="d-flex align-items-center justify-content-center">
   <b>The battle is over! We have won!!</b>
 </div>
-<div class="d-flex align-items-center justify-content-center">
-  <% if @user %>
-    <b> <%= @user.email %> </b>
-    <%= button_to "Logout", logout_path, method: :delete %>
-  <% end %>
-</div>
-
 
