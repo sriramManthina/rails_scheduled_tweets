@@ -15,19 +15,24 @@ Rails.application.routes.draw do
 
 
   # my changes start here ____________________________
-  root "main#index"
+  root "main#index" # view home page
 
   # GET /about (goes to about controller, index action)
-  get "about_us", to: "about#index", as: :about
+  get "about_us", to: "about#index", as: :about # view about us page
 
-  get "password", to: "passwords#edit", as: :edit_password
-  patch "password", to: "passwords#update"
+  get "password", to: "passwords#edit", as: :edit_password # form for editing password
+  patch "password", to: "passwords#update" # form handler for editing password
 
-  get "sign_up", to: "registrations#new"
-  post "sign_up", to: "registrations#create"
+  get "password/reset", to: "password_resets#new" # form for sending reset mail
+  post "password/reset", to: "password_resets#create" # form handler for sending reset mail
+  get "password/reset/edit", to: "password_resets#edit" # form for new password
+  patch "password/reset/edit", to: "password_resets#update" # form handler to update the password
 
-  get "sign_in", to: "sessions#new"
-  post "sign_in", to: "sessions#create"
+  get "sign_up", to: "registrations#new" # form for creating new user
+  post "sign_up", to: "registrations#create" # form handler for creating new user
 
-  delete "logout", to: "sessions#destroy"
+  get "sign_in", to: "sessions#new" # form for logging in user
+  post "sign_in", to: "sessions#create" # form handler for logging in user
+
+  delete "logout", to: "sessions#destroy" # logout user by removing session token
 end
