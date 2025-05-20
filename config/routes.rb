@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   # my changes start here ____________________________
   root "main#index" # view home page
 
+  get "/auth/twitter/callback", to: "omniauth_callbacks#twitter"
+
   # GET /about (goes to about controller, index action)
   get "about_us", to: "about#index", as: :about # view about us page
 
