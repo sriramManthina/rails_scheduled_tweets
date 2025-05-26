@@ -1,5 +1,7 @@
 class TwitterAccountsController < ApplicationController
   before_action :require_user_logged_in!
+  before_action :set_twitter_account, only: [:destroy]
+
   def index
     @twitter_accounts = Current.user.twitter_accounts
   end
@@ -10,5 +12,11 @@ class TwitterAccountsController < ApplicationController
     # even though in the above line @twitter_account has been deleted, it will still be in the memory until the action is complete
     # hence we are using it in the below line
     redirect_to twitter_accounts_path, notice: "Successfully disconnected @#{@twitter_account.username}"
+  end
+
+  private
+
+  def set_twitter_account
+    @twitter_account = Current.user.twitter_accounts.find(params[:id])
   end
 end

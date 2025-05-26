@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   post "sign_in", to: "sessions#create" # form handler for logging in user
 
   resources :twitter_accounts
+  resources :tweets
 
   delete "logout", to: "sessions#destroy" # logout user by removing session token
 end
