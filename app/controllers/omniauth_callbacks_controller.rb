@@ -9,7 +9,7 @@ class OmniauthCallbacksController < ApplicationController
       secret: auth.credentials.secret,
     )
 
-    redirect_to root_path, notice: "Successfully logged in. #{auth.info.nickname} - #{auth.info.name}"
+    redirect_to twitter_accounts_path, notice: "Successfully logged in. #{auth.info.nickname} - #{auth.info.name}"
   end
 
   def auth
