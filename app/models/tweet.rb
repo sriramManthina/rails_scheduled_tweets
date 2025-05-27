@@ -12,4 +12,13 @@ class Tweet < ApplicationRecord
   def published?
     tweet_id?
   end
+
+  # can run > Tweet.last.publish_to_twitter! in console to publish the last tweet
+  def publish_to_twitter!
+    data = {text: body }
+    tweet = twitter_account.client.post("tweets", data.to_json) do |req|
+      req.headers['Content-Type'] = 'application/json'
+    end
+    update(tweet_id: tweet["data"]["id"])
+  end
 end
