@@ -1,0 +1,37 @@
+<%= form_with model: @tweet, data: { turbo: false } do |form| %>
+  <%#= render "shared/form_errors", form: form %>
+  <% if form.object.errors.any? %>
+    <% form.object.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <div><%= message %></div>
+      </div>
+    <% end %>
+  <% end %>
+  <div class="mb-3">
+    <%= form.label :twitter_account_id %>
+    <%= form.collection_select :twitter_account_id, Current.user.twitter_accounts, :id, :username, {}, {class: 'form-control'} %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :body %>
+    <%= form.text_area :body, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :publish_at %>
+    <div class="form-control">
+      <%= form.datetime_select :publish_at %>
+    </div>
+  </div>
+
+  <%= form.button "Schedule", class: "btn btn-primary" %>
+  <%#= button_to "Schedule", form.object, method: :new, class: "btn btn-primary" %>
+
+<!--  persisted checks if the tweet exists in DB and returns true if it is-->
+  <% if form.object.persisted? %>
+    <div class="mt-3">
+      <%= button_to "Delete", form.object, method: :delete, form: { data: {turbo_confirm: 'Are you sure?'}}, class: "btn btn-danger" %>
+    </div>
+  <% end %>
+<% end %>
+
